@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <com.qpg.widget.button.iml.ActionProcessButton
+        android:id="@+id/btnAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="上传"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        custom:pb_cornerRadius="10dp"
+        custom:pb_textComplete="完成"
+        custom:pb_textProgress="上传中..."
+        custom:pb_textError="Error"/>
+
+    <com.qpg.widget.button.iml.SubmitProcessButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="上传"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        custom:pb_textComplete="完成"
+        custom:pb_textProgress="上传中..."
+        custom:pb_textError="Error"/>
+
+    <com.qpg.widget.button.iml.GenerateProcessButton
+        android:id="@+id/btnGenerate"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="上传"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        custom:pb_textComplete="完成"
+        custom:pb_textProgress="上传中..."
+        custom:pb_textError="错误"/>
+
+    <Button
+        android:id="@+id/btnProgressError"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="Error State setProgress(-1)" />
+
+    <Button
+        android:id="@+id/btnProgressNormal"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:text="Normal State setProgress(0)" />
+
+    <Button
+        android:id="@+id/btnProgressLoading"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:text="Progress State setProgress(50)" />
+
+    <Button
+        android:id="@+id/btnProgressComplete"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:text="Complete State setProgress(100)" />
+
+
+</LinearLayout>
