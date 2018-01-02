@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.qpg.widget.WidgetInit;
+import com.qpg.widget.common.TitleBar;
 import com.qpg.widget.dialog.DialogOnClickListener;
 import com.qpg.widget.dialog.MDEditDialog;
 import com.qpg.widget.dialog.MDSelectionDialog;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity implements View.OnClickListener{
     Button mButton,mDialog,mLoading;
     private Button a,btnEdit;
+    TitleBar titleBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         mLoading=findViewById(R.id.loading);
         mLoading.setOnClickListener(this);
 
-
+        titleBar=findViewById(R.id.title11);
+        titleBar.setImmersive(MainActivity.this,true,false);
 //        SuperDialog.customDialog(this)
 //                .setContentView( LayoutInflater.from(this).inflate(
 //                        R.layout.activity_main, null)).setTitle("2342").builder().show();

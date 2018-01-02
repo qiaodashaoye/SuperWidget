@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qpg.widget.R;
+import com.qpg.widget.utils.StatusBarUtil;
 
 import java.util.LinkedList;
 
@@ -199,18 +200,20 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
      * 设置状态栏半透明还是全透明
      * @param activity
      * @param isTransparent
+     * @param isDarkFont
      * @return
      */
-    public TitleBar setImmersive(Activity activity,boolean isTransparent) {
+    public TitleBar setImmersive(Activity activity,boolean isTransparent,boolean isDarkFont) {
+
+        Window window = activity.getWindow();
         if (hasKitKat() && !hasLollipop()) {
             //透明状态栏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
         } else if (hasLollipop()) {
-            Window window = activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                     | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             if(isTransparent){
@@ -220,6 +223,10 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
             }
 
         }
+        if(isDarkFont){
+            StatusBarUtil.StatusBarLightMode(activity); //设置深色状态栏图标和字体
+        }
+
         this.setImmersive(true);
         return this;
     }
@@ -254,8 +261,9 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         return this;
     }
 
-    public void setLeftImageResource(int resId) {
+    public TitleBar setLeftImageResource(int resId) {
         mLeftText.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
+        return this;
     }
 
     public TitleBar setLeftClickListener(OnClickListener l) {
@@ -348,7 +356,11 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         return this;
     }
 
-    public TitleBar setCustomTitle(View titleView) {
+    public TitleBar setCustomTitle(View titleView){
+        this.setCustomTitle(titleView,LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+        return this;
+    }
+    public TitleBar setCustomTitle(View titleView,int width,int height) {
         if (titleView == null) {
             mCenterText.setVisibility(View.VISIBLE);
             if (mCustomCenterView != null) {
@@ -359,7 +371,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
             if (mCustomCenterView != null) {
                 mCenterLayout.removeView(mCustomCenterView);
             }
-            LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            LayoutParams layoutParams = new LayoutParams(width,height);
             mCustomCenterView = titleView;
             mCenterLayout.addView(titleView, layoutParams);
             mCenterText.setVisibility(View.GONE);
@@ -403,6 +415,13 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
         return this;
     }
 
+    /**
+     * 获取中间的根View，方便对自定义的view进行操作
+     * @return
+     */
+    public View getCenterView(){
+        return mCenterLayout;
+    }
     @Override
     public void onClick(View view) {
         final Object tag = view.getTag();
