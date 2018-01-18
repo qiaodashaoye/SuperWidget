@@ -31,8 +31,8 @@ public class SuperDialog {
         return new CustomDialog.Builder(context);
     }
 
-    public static ShareDialog  bottomDialog(Activity activity){
-        return new ShareDialog(activity);
-    }
+//    public static ShareDialog  bottomDialog(Activity activity){
+//        return new ShareDialog(activity);
+//    }
 
 }

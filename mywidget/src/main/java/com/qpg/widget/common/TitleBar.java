@@ -205,6 +205,9 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
      */
     public TitleBar setImmersive(Activity activity,boolean isTransparent,boolean isDarkFont) {
 
+        if(!hasKitKat()){
+            return this;
+        }
         Window window = activity.getWindow();
         if (hasKitKat() && !hasLollipop()) {
             //透明状态栏
@@ -233,6 +236,9 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
 
     //自定义状态栏颜色
     public TitleBar setImmersive(Activity activity,String colorS) {
+        if(!hasKitKat()){
+            return this;
+        }
         if (hasKitKat() && !hasLollipop()) {
             //透明状态栏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -287,7 +293,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     public TitleBar setLeftTextColor(int color) {
-        mLeftText.setTextColor(color);
+        mLeftText.setTextColor(getResources().getColor(color));
         return this;
     }
 
@@ -332,7 +338,8 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     public TitleBar setTitleColor(int resid) {
-        mCenterText.setTextColor(resid);
+        mCenterText.setTextColor(getResources().getColor(resid));
+
         return this;
     }
 
@@ -347,7 +354,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     }
 
     public TitleBar setSubTitleColor(int resid) {
-        mSubTitleText.setTextColor(resid);
+        mSubTitleText.setTextColor(getResources().getColor(resid));
         return this;
     }
 
@@ -422,6 +429,12 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
     public View getCenterView(){
         return mCenterLayout;
     }
+    public View getLeftView(){
+        return mLeftText;
+    }
+    public View getRightView(){
+        return mRightLayout;
+    }
     @Override
     public void onClick(View view) {
         final Object tag = view.getTag();
@@ -430,6 +443,7 @@ public class TitleBar extends ViewGroup implements View.OnClickListener {
             action.performAction(view);
         }
     }
+
 
     /**
      * Adds a list of {@link Action}s.

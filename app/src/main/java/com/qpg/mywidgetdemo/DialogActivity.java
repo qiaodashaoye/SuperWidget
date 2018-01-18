@@ -56,8 +56,7 @@ public class DialogActivity extends AppCompatActivity implements View.OnClickLis
                 }).build().show();
                 break;
             case R.id.dg_bottom:
-                SuperDialog.bottomDialog(this)
-                        .show();
+
                 break;
                 case R.id.dg_edit:
                 SuperDialog.editDialog(this).setOnclickListener(new MDEditDialog.OnClickEditDialogListener() {

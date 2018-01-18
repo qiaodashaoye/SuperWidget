@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.qpg.mywidgetdemo.LoadingActivity">
-
+    <com.qpg.widget.common.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title11"
+        android:background="@color/colorAccent"></com.qpg.widget.common.TitleBar>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
