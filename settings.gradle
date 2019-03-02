@@ -1,1 +1,1 @@
-include ':app', ':mywidget'
+include ':app', ':superwidget'

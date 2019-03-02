@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- 自定义TitleBar -->
+    <declare-styleable name="TitleBar">
+        <attr name="leftImg" format="reference" />
+        <attr name="leftText" format="string" />
+        <attr name="leftTextColor" format="color"/>
+        <attr name="leftTextSize" format="dimension"/>
+        <attr name="centerText" format="string" />
+        <attr name="centerTextColor" format="color"/>
+        <attr name="centerTextSize" format="dimension"/>
+        <attr name="subtitleText" format="string" />
+        <attr name="subtitleTextColor" format="color"/>
+        <attr name="subtitleTextSize" format="dimension"/>
+        <attr name="rightImg" format="reference" />
+        <attr name="rightText" format="string" />
+        <attr name="rightTextColor" format="color"/>
+        <attr name="rightTextSize" format="dimension"/>
+    </declare-styleable>
+
+</resources>

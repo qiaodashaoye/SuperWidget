@@ -37,13 +37,13 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello World!"
-                android:id="@+id/btn_select" />
+                android:text="日志注解"
+                android:id="@+id/btn_log" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello World!"
-                android:id="@+id/btn_tip" />
+                android:text="登陆注解"
+                android:id="@+id/btn_login" />
 
             <Button
                 android:layout_width="match_parent"
