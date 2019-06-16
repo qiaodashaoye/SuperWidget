@@ -8,12 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.qpg.mywidgetdemo.bean.User;
+import com.qpg.widget.aop.trace.CacheTrace;
 import com.qpg.widget.aop.trace.CheckLoginTrace;
+import com.qpg.widget.aop.trace.PrefsTrace;
+import com.qpg.widget.aop.trace.SafeTrace;
 import com.qpg.widget.aop.trace.SingleClickTrace;
 import com.qpg.widget.common.TitleBar;
 import com.qpg.widget.scrollview.ObservableScrollView;
 import com.qpg.widget.scrollview.ScrollViewListener;
+import com.safframework.cache.Cache;
+import com.safframework.prefs.AppPrefs;
 
 //1、gradlew install    2、gradlew bintrayUpload
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -67,7 +74,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 setActionBar(Math.abs(y));
             }
         });
-
+        saveUserByCache();
+        getUserByCache();
+        saveUserByPrefs();
+        getUserByByPrefs();
     }
 
 
@@ -75,7 +85,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn:
-                 startActivity(new Intent(MainActivity.this, ButtonActivity.class));
+                startActivity(new Intent(MainActivity.this, ButtonActivity.class));
                 break;
             case R.id.btn_login:
                 asd();
@@ -114,5 +124,43 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @CheckLoginTrace(actionDefine = 1)
     private void asd() {
 
+    }
+
+
+  //  @CacheTrace(key = "user",expiry = 2000)//自定义缓存过期时间
+    @CacheTrace(key = "user")
+    private User saveUserByCache() {
+        User userInfo = new User();
+        userInfo.setUid("111");
+        userInfo.setToken("sfsdgwefc");
+        userInfo.setName("乔少");
+        return userInfo;
+    }
+
+    void getUserByCache() {
+        Cache cache = Cache.get(this);
+        User user = (User) cache.getObject("user");
+        System.out.println(user);
+    }
+
+
+    @PrefsTrace(key = "user")
+    private User saveUserByPrefs() {
+        User userInfo = new User();
+        userInfo.setUid("111");
+        userInfo.setToken("sfsdgwefc");
+        userInfo.setName("乔少");
+        return userInfo;
+    }
+
+    void getUserByByPrefs() {
+        AppPrefs appPrefs = AppPrefs.get(this);
+        User user = (User) appPrefs.getObject("user");
+        System.out.println(user);
+    }
+
+    @SafeTrace
+    private void noTry() {
+        int a = 10 / 0;
     }
 }

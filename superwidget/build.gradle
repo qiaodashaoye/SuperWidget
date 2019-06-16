@@ -10,7 +10,10 @@ android {
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
 
     buildTypes {
@@ -29,7 +32,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'org.aspectj:aspectjrt:1.9.2'
+    implementation 'org.aspectj:aspectjrt:1.9.4'
+    api 'com.safframework:saf-cache:1.1.1'//可以设置缓存时间的缓存库
 
 }
 apply from: '../bintray.gradle'
